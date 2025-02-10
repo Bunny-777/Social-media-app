@@ -85,12 +85,13 @@ app.get('/profile',isLoggedIn, async function(req,res){
     res.render('profile',{user});
 })
 
-app.post('/post',isLoggedIn,async function(req,res){
+app.post('/post',isLoggedIn,upload.single('postimage'),async function(req,res){
     let user= await userModel.findOne({email:req.user.email});
     let {content}=req.body;
     let post= await postModel.create({
         user:user._id,
-        content
+        content,
+        postimage: req.file ? req.file.filename : null
     });
     user.posts.push(post._id);
     await user.save();
@@ -138,7 +139,6 @@ app.post('/dpupload',isLoggedIn,upload.single('image'),async function(req,res){
     user.profilepic=req.file.filename;
     await user.save();
     res.redirect('profile');
-
 })
 
 function isLoggedIn(req,res,next){

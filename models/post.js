@@ -10,6 +10,7 @@ const postSchema=mongoose.Schema({
         default:Date.now
     },
     content:String,
+    postimage:String,
     likes:[
         {type:mongoose.Schema.Types.ObjectId,
             ref:'user'
