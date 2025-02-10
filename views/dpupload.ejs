@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload profile photo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-full min-h-screen bg-zinc-900 p-10 text-white">
+        <div class="mb-10 w-full flex justify-between items-center">
+            <a class="bg-blue-500 rounded-md mb-3 px-3 py-2 inline-block" href="/profile">Back</a>    
+            <a class="bg-red-500 rounded-md px-3 py-2 inline-block" href="/logout">Logout</a>
+        </div>
+        <h3 class=" mb-10 text-3xl" >Upload profile 👤</h3>
+        
+       <form autocomplete="off"  method="post"  enctype="multipart/form-data" action="/dpupload">
+        <input type="file" name="image" id="">
+        <input type="submit" class="px-5 py-2 rounded-md bg-blue-500" value="Upload image">
+       </form>
+        
+    </div>
+</body>
+</html>

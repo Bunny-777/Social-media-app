@@ -6,7 +6,8 @@ const bcrypt=require('bcrypt');
 const userModel=require('./models/user');
 const postModel=require('./models/post');
 const cookieParser = require('cookie-parser');
-
+const upload = require('./config/multerconfig');
+ 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,'public')));
@@ -123,13 +124,22 @@ app.post('/edit/:id',async function(req,res){
     res.redirect('/profile');
 })
 
-
-
 app.get('/logout',function(req,res){
     res.cookie('token','');
     res.redirect('login');
 })
 
+app.get('/dpupload',function(req,res){
+    res.render('dpupload');
+})
+
+app.post('/dpupload',isLoggedIn,upload.single('image'),async function(req,res){
+    let user=await userModel.findOne({email:req.user.email});
+    user.profilepic=req.file.filename;
+    await user.save();
+    res.redirect('profile');
+
+})
 
 function isLoggedIn(req,res,next){
     if(req.cookies.token==='') return res.redirect('login')
