@@ -14,12 +14,12 @@
 git clone https://github.com/your-username/social-media-app.git
 cd social-media-app
 ```
-###2️⃣ Install Dependencies
+### 2️⃣ Install Dependencies
 ```bash
 npm i express dotenv ejs mongoose jsonwebtoken cookie-parser bcrypt multer
 ```
 
-###3️⃣ Run the Server
+### 3️⃣ Run the Server
 ```bash
 node app.js
 ```
