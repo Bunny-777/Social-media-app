@@ -1,5 +1,8 @@
 const mongoose=require('mongoose');
-mongoose.connect('mongodb://localhost/socialapp');
+require('dotenv').config();
+const mongo_uri=`${process.env.mongo_uri}/chat_app`;
+console.log(mongo_uri);
+mongoose.connect(mongo_uri);
 const userSchema=mongoose.Schema({
     username:String,
     name:String,
